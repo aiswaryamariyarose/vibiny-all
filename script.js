@@ -1,4 +1,5 @@
-const API_KEY = "AIzaSyCSMCVWg3EYp4rZ7031w6QEcTtALmGNaQY";  // Replace with actual API key
+
+const API_KEY = "Your API key";  // Replace with actual API key
 
 // Handle form submission
 document.addEventListener("DOMContentLoaded", function () {
@@ -34,44 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             outputText.textContent = "No data found. Please submit your input.";
         }
-    }
 
-    // Copy button functionality
-    const copyBtn = document.getElementById("copyBtn");
-    if (copyBtn) {
-        copyBtn.addEventListener("click", function () {
-            navigator.clipboard.writeText(outputText.textContent)
-                .then(() => alert("Copied to clipboard!"))
-                .catch(err => console.error("Copy failed", err));
-        });
-    }
-});
 
-// Function to fetch response from Gemini API
-async function fetchGeminiResponse(userInput) {
-    const outputText = document.getElementById("outputText");
-    
-    try {
-        const response = await fetch("https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=AIzaSyDKeG-5zmORs50OMQWEKBui7nssjRvwfi8", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                prompt: `Generate a personalized outfit recommendation for the following input:
-                Occasion: ${userInput.occasion}
-                Mood: ${userInput.mood}
-                Color Code: ${userInput.colorCode}
-                Description: ${userInput.description}`,
-                maxTokens: 100
-            })
-        });
 
-        const data = await response.json();
-        print(data)
-        outputText.textContent = data.candidates[0].text || "Error fetching response";
-    } catch (error) {
-        outputText.textContent = "Failed to fetch response. Try again.";
-        console.error("Error:", error);
-    }
-}
+
